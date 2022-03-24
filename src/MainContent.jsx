@@ -18,15 +18,15 @@ export default class MainContent extends Component {
         address: { city: "New Jersey" },
       },
       { id: 3, name: "Allen", phone: "889-921", address: { city: "London" } },
-      { id: 4, name: "James", phone: "552-901", address: { city: "Berlin" } },
-      { id: 5, name: "John", phone: "781-778", address: { city: "New York" } },
+      { id: 4, name: "James", phone: null, address: { city: "Berlin" } },
+      { id: 5, name: "John", phone: null, address: { city: "New York" } },
     ],
   };
 
   render() {
     return (
       <div>
-        <h4 className="border-bottom m-1 p-1">
+        <h4 className=" m-1 p-1">
           {this.state.pageTitle}
           <span className="badge badge-secondary m-2">
             {this.state.customersCount}
@@ -47,26 +47,36 @@ export default class MainContent extends Component {
             </tr>
           </thead>
 
-          <tbody>
-            {this.state.customers.map((cust) => {
-              return (
-                <tr key={cust.id}>
-                  <td>{cust.id}</td>
-                  <td>{cust.name}</td>
-                  <td>{cust.phone}</td>
-                  <td>{cust.address.city}</td>
-                </tr>
-              );
-            })}
-          </tbody>
+          <tbody>{this.getCustomerRow()}</tbody>
         </table>
       </div>
     );
   }
   //Executes when the user clicks on Refresh button
   onRefreshClick = () => {
+    //update the state using setState method - so that react updates the browser DOM automatically
     this.setState({
       customersCount: 7,
+    });
+  };
+
+  getPhoneToRender = (phone) => {
+    if (phone) return phone;
+    else {
+      return <div className="bg-warning p-2 text-center">No Phone</div>;
+    }
+  };
+
+  getCustomerRow = () => {
+    return this.state.customers.map((cust) => {
+      return (
+        <tr key={cust.id}>
+          <td>{cust.id}</td>
+          <td>{cust.name}</td>
+          <td>{this.getPhoneToRender(cust.phone)}</td>
+          <td>{cust.address.city}</td>
+        </tr>
+      );
     });
   };
 }
