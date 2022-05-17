@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 import Product from "./Product";
+
 export default class ShoppingCart extends Component {
-  state = {
-    products: [
-      { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
-      { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
-      { id: 3, productName: "iPad Pro", price: 12400, quantity: 0 },
-      { id: 4, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
-      { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
-      { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
-    ],
-  };
+  //Executes when the component is mounted
+  constructor(props) {
+    console.log("constructor-ShoppingCart");
+    super(props); //calling super class constructor
+    //initialisation of state
+    this.state = {
+      products: [
+        { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
+        { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
+        { id: 3, productName: "iPad Pro", price: 12400, quantity: 0 },
+        { id: 4, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
+        { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
+        { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
+      ],
+    };
+  }
 
   render() {
+    console.log("render-ShoppingCart");
     return (
       <div className="container-fluid">
         <h4>Shopping Cart</h4>
@@ -38,6 +46,12 @@ export default class ShoppingCart extends Component {
   }
   // render ends here
 
+  /*Executes after constructor and render method (includes life cycle of
+  child components, if any) of current component*/
+  componentDidMount() {
+    //fetch data from data source
+    console.log("componentDidMount-ShoppingCart");
+  }
   // EXECUTES WHEN THE USER CLICKS ON + BUTTON
   handleIncrement = (product, maxValue) => {
     // Get index of selected product
