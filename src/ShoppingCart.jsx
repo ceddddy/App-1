@@ -62,9 +62,15 @@ export default class ShoppingCart extends Component {
       this.state
     );
 
-    if (prevProps.x == this.props.x) {
-      //make http call ----ALWAYS MAKE HTTP CALLS CONDITIONALLY
-    }
+    // if (prevProps.x == this.props.x) {
+    //   //make http call ----ALWAYS MAKE HTTP CALLS CONDITIONALLY
+    // }
+  }
+
+  /*Executes when the current instance of current component is 
+  being deleted from memory*/
+  componentWillUnmount() {
+    console.log("componentwillUnmount-ShoppingCart");
   }
   // EXECUTES WHEN THE USER CLICKS ON + BUTTON
   handleIncrement = (product, maxValue) => {
