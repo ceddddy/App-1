@@ -52,6 +52,20 @@ export default class ShoppingCart extends Component {
     //fetch data from data source
     console.log("componentDidMount-ShoppingCart");
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      "componentDidUpdate-ShoppingCart",
+      prevProps,
+      prevState,
+      this.props,
+      this.state
+    );
+
+    if (prevProps.x == this.props.x) {
+      //make http call ----ALWAYS MAKE HTTP CALLS CONDITIONALLY
+    }
+  }
   // EXECUTES WHEN THE USER CLICKS ON + BUTTON
   handleIncrement = (product, maxValue) => {
     // Get index of selected product
